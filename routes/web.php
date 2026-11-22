@@ -14,3 +14,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+Route::get('/verificacion', function () {
+    return 'Aquí va la pantalla del código';
+})->name('verificacion');
