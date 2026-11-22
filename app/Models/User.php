@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -30,5 +31,10 @@ class User extends Authenticatable
             'password' => 'hashed',
             'verification_expires_at' => 'datetime',
         ];
+    }
+
+    public function alumno(): HasOne
+    {
+        return $this->hasOne(Alumno::class);
     }
 }
