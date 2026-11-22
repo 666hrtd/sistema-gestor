@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\LoginController;
@@ -52,4 +53,18 @@ Route::get('/mi-informacion', [AlumnoController::class, 'miInformacion'])
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('productos', ProductoController::class)->except(['index', 'show']);
+});
+
+Route::middleware(['auth', 'role:admin,estudiante'])->group(function () {
+    Route::get('/equipos', [EquipoController::class, 'index'])->name('equipos.index');
+    Route::get('/reservaciones', [ReservacionController::class, 'index'])->name('reservaciones.index');
+    Route::delete('/reservaciones/{reservacion}', [ReservacionController::class, 'destroy'])->name('reservaciones.destroy');
+
+    Route::post('/equipos/{equipo}/reservar', [ReservacionController::class, 'store'])
+        ->middleware('role:estudiante')
+        ->name('reservaciones.store');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('equipos', EquipoController::class)->except(['index', 'show']);
 });

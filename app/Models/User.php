@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Database\Factories\UserFactory;
@@ -37,4 +38,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Alumno::class);
     }
+
+    public function reservaciones(): HasMany
+{
+    return $this->hasMany(Reservacion::class);
+}
+
 }
