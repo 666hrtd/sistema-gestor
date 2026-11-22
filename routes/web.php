@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificacionController;
@@ -31,3 +32,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/papelera/usuarios', [UserController::class, 'trashed'])->name('users.trashed');
     Route::patch('/papelera/usuarios/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
 });
+
+Route::middleware(['auth', 'role:profesor'])->group(function () {
+    Route::resource('alumnos', AlumnoController::class)->except(['show']);
+});
+
+Route::get('/mi-informacion', [AlumnoController::class, 'miInformacion'])
+    ->middleware(['auth', 'role:alumno'])
+    ->name('alumnos.mi');
+
+    Route::post('/verificacion', [VerificacionController::class, 'verificar'])
+    ->middleware(['signed', 'pending2fa']);
