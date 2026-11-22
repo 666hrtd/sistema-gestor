@@ -17,8 +17,8 @@ Route::get('/dashboard', function () {
 })->middleware('auth')->name('dashboard');
 
 Route::get('/verificacion', [VerificacionController::class, 'mostrar'])
-    ->middleware('signed')
+    ->middleware(['signed', 'pending2fa'])
     ->name('verificacion');
 
 Route::post('/verificacion', [VerificacionController::class, 'verificar'])
-    ->middleware('signed');
+    ->middleware(['signed', 'pending2fa']);
