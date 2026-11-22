@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificacionController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,7 @@ Route::get('/verificacion', [VerificacionController::class, 'mostrar'])
 
 Route::post('/verificacion', [VerificacionController::class, 'verificar'])
     ->middleware(['signed', 'pending2fa']);
+
+Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
+    Route::resource('users', UserController::class)->except(['destroy']);
+});
