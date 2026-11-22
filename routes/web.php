@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VerificacionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-Route::get('/verificacion', function () {
-    return 'Aquí va la pantalla del código';
-})->name('verificacion');
+Route::get('/verificacion', [VerificacionController::class, 'mostrar'])
+    ->middleware('signed')
+    ->name('verificacion');
+
+Route::post('/verificacion', [VerificacionController::class, 'verificar'])
+    ->middleware('signed');
