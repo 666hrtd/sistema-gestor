@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -43,3 +45,11 @@ Route::get('/mi-informacion', [AlumnoController::class, 'miInformacion'])
 
     Route::post('/verificacion', [VerificacionController::class, 'verificar'])
     ->middleware(['signed', 'pending2fa']);
+
+    Route::get('/productos', [ProductoController::class, 'index'])
+    ->middleware(['auth', 'role:admin,empleado'])
+    ->name('productos.index');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('productos', ProductoController::class)->except(['index', 'show']);
+});

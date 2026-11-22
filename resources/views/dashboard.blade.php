@@ -16,6 +16,10 @@
         <p><a href="{{ route('alumnos.index') }}">Gestionar alumnos</a></p>
     @endif
 
+    @if (in_array(auth()->user()->role, ['admin', 'empleado']))
+    <p><a href="{{ route('productos.index') }}">Productos</a></p>
+    @endif
+
     @if (auth()->user()->role === 'alumno')
         <p><a href="{{ route('alumnos.mi') }}">Mi información académica</a></p>
     @endif
