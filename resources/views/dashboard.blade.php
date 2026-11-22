@@ -26,6 +26,10 @@
         <p><a href="{{ route('reservaciones.index') }}">Reservaciones</a></p>
     @endif
 
+    @if (in_array(auth()->user()->role, ['admin', 'jugador']))
+        <p><a href="{{ route('partidas.index') }}">Juego del gato</a></p>
+    @endif
+
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit">Cerrar sesión</button>

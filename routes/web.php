@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Http\Controllers\PartidaController;
+use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\ProductoController;
@@ -16,6 +19,9 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/registro', [RegistroController::class, 'create'])->name('registro');
+Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -68,3 +74,21 @@ Route::middleware(['auth', 'role:admin,estudiante'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('equipos', EquipoController::class)->except(['index', 'show']);
 });
+
+Route::middleware(['auth', 'role:admin,jugador'])->group(function () {
+    Route::get('/partidas', [PartidaController::class, 'index'])->name('partidas.index');
+    Route::get('/partidas/historial', [PartidaController::class, 'historial'])->name('partidas.historial');
+    Route::get('/partidas/{partida}', [PartidaController::class, 'show'])->name('partidas.show');
+    Route::get('/partidas/{partida}/estado', [PartidaController::class, 'estado'])->name('partidas.estado');
+});
+
+Route::middleware(['auth', 'role:jugador'])->group(function () {
+    Route::post('/partidas', [PartidaController::class, 'store'])->name('partidas.store');
+    Route::post('/partidas/{partida}/unirse', [PartidaController::class, 'unirse'])->name('partidas.unirse');
+    Route::post('/partidas/{partida}/mover', [PartidaController::class, 'mover'])->name('partidas.mover');
+    Route::post('/partidas/{partida}/abandonar', [PartidaController::class, 'abandonar'])->name('partidas.abandonar');
+});
+
+Route::post('/partidas/{partida}/cancelar', [PartidaController::class, 'cancelar'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('partidas.cancelar');

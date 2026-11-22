@@ -37,9 +37,10 @@
             <p>
                 <label>Rol</label>
                 <select name="role">
-                    <option value="empleado">Empleado</option>
-                    <option value="admin">Admin</option>
-                </select>
+    @foreach (['empleado', 'admin', 'profesor', 'alumno', 'estudiante', 'jugador'] as $rol)
+        <option value="{{ $rol }}" @selected(old('role') === $rol)>{{ ucfirst($rol) }}</option>
+    @endforeach
+</select>
             </p>
         @else
             <input type="hidden" name="role" value="empleado">

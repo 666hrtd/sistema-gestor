@@ -26,7 +26,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', Rule::in(['admin', 'empleado'])],
+            'role' => ['required', Rule::in(['admin', 'empleado', 'profesor', 'alumno', 'estudiante', 'jugador'])],
         ]);
 
         // Un empleado solo puede crear empleados
@@ -55,7 +55,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', Rule::in(['admin', 'empleado'])],
+            'role' => ['required', Rule::in(['admin', 'empleado', 'profesor', 'alumno', 'estudiante', 'jugador'])],
         ]);
 
         // Un empleado no puede cambiar roles

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
 </head>
+<p><a href="{{ route('registro') }}">Registrarme como jugador</a></p>
 <body>
     <h1>Iniciar sesión</h1>
 
