@@ -1,9 +1,13 @@
 :root {
-    --verde: #00877f;
-    --vino: #8b2332;
-    --fondo: #f4f6f8;
-    --texto: #1f2933;
-    --borde: #d9dee3;
+    color-scheme: dark;
+    --verde: #00877f;          /* botones y encabezados de tabla */
+    --verde-claro: #2dd4c4;    /* títulos, enlaces y bordes */
+    --vino: #a52a3d;           /* botones de eliminar y cancelar */
+    --vino-claro: #e0566b;     /* subtítulos */
+    --fondo: #0d0f12;
+    --tarjeta: #181b20;
+    --texto: #e6e8eb;
+    --borde: #2c3138;
 }
 
 * { box-sizing: border-box; }
@@ -18,26 +22,26 @@ body {
     line-height: 1.5;
 }
 
-h1 { color: var(--verde); margin-top: 0; }
-h2 { color: var(--vino); }
+h1 { color: var(--verde-claro); margin-top: 0; }
+h2 { color: var(--vino-claro); }
 hr { border: 0; border-top: 1px solid var(--borde); }
 
-a { color: var(--verde); font-weight: 600; text-decoration: none; }
+a { color: var(--verde-claro); font-weight: 600; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* Tablas */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: var(--tarjeta);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .5);
     margin: 16px 0;
 }
 th { background: var(--verde); color: #fff; text-align: left; }
 th, td { padding: 10px 12px; border: 0; border-bottom: 1px solid var(--borde); }
-tbody tr:hover td { background: #eef7f6; }
+tbody tr:hover td { background: #20252c; }
 
 /* Formularios */
 label { display: block; font-weight: 600; margin-top: 12px; }
@@ -50,12 +54,14 @@ input:not([type=hidden]), select, textarea {
     border: 1px solid var(--borde);
     border-radius: 6px;
     font: inherit;
-    background: #fff;
+    background: #0f1216;
+    color: var(--texto);
 }
 input:focus, select:focus, textarea:focus {
-    outline: 2px solid var(--verde);
-    border-color: var(--verde);
+    outline: 2px solid var(--verde-claro);
+    border-color: var(--verde-claro);
 }
+::placeholder { color: #7b838d; }
 
 /* Formularios de filtros (GET): campos en fila */
 form[method="GET"] input:not([type=hidden]),
@@ -66,15 +72,15 @@ form[method="GET"] select {
     margin: 2px 0;
 }
 
-/* Formularios con etiquetas: tarjeta blanca */
+/* Formularios con etiquetas: tarjeta */
 form:has(label) {
-    background: #fff;
+    background: var(--tarjeta);
     padding: 20px 24px;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .5);
     max-width: 480px;
 }
-form:has(label) span { color: #b00020; font-size: .9em; }
+form:has(label) span { color: #ff6b7a; font-size: .9em; }
 
 /* Botones */
 button {
@@ -104,7 +110,7 @@ form[action$="/logout"] { background: none; box-shadow: none; padding: 0; }
 .pagination { list-style: none; display: flex; gap: 8px; padding: 0; }
 .pagination li {
     padding: 6px 12px;
-    background: #fff;
+    background: var(--tarjeta);
     border: 1px solid var(--borde);
     border-radius: 6px;
 }
@@ -118,15 +124,14 @@ form[action$="/logout"] { background: none; box-shadow: none; padding: 0; }
     text-align: center;
     font-size: 40px;
     font-weight: 700;
-    background: #fff;
-    border: 2px solid var(--verde);
+    background: var(--tarjeta);
+    border: 2px solid var(--verde-claro);
 }
 .tablero button {
     width: 100%;
     height: 90px;
     margin: 0;
-
     background: transparent;
-    color: var(--verde);
+    color: var(--verde-claro);
 }
-.tablero button:hover { background: #e6f4f3; }
+.tablero button:hover { background: #20262e; }
