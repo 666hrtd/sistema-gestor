@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar alumno</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <h1>Registrar alumno</h1>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar producto</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <h1>Editar producto</h1>
 

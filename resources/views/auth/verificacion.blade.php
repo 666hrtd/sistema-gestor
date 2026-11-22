@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Verificación</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <h1>Verificación de administrador</h1>
     <p>Escribe el código que se envió a tu correo. Vence en 5 minutos.</p>

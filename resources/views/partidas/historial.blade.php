@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Historial de partidas</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <x-barra-usuario />
 

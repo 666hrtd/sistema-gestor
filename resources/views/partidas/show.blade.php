@@ -16,7 +16,7 @@
         .tablero td { border: 2px solid #000; width: 80px; height: 80px; text-align: center; font-size: 36px; }
         .tablero button { width: 80px; height: 80px; font-size: 20px; cursor: pointer; }
     </style>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <x-barra-usuario />
 

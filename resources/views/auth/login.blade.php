@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <p><a href="{{ route('registro') }}">Registrarme como jugador</a></p>
 <body>
     <h1>Iniciar sesión</h1>

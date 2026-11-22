@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de jugador</title>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <h1>Registro de jugador</h1>
 

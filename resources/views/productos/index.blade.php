@@ -6,7 +6,7 @@
     <style>
         .pagination { list-style: none; display: flex; gap: 8px; padding: 0; }
     </style>
-</head>
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head>
 <body>
     <h1>Productos</h1>
 
