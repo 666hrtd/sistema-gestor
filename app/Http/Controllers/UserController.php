@@ -72,4 +72,46 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado');
     }
+
+    // Eliminación lógica (Soft Delete)
+    public function destroy(Request $request, User $user)
+    {
+        if ($user->id === $request->user()->id) {
+            return back()->with('error', 'No puedes eliminarte a ti mismo.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'Usuario desactivado');
+    }
+
+    // Eliminación permanente (Delete)
+    public function forceDestroy(Request $request, $id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        if ($user->id === $request->user()->id) {
+            return back()->with('error', 'No puedes eliminarte a ti mismo.');
+        }
+
+        $user->forceDelete();
+
+        return back()->with('success', 'Usuario eliminado permanentemente');
+    }
+
+    // Lista de usuarios con eliminación lógica
+    public function trashed()
+    {
+        $users = User::onlyTrashed()->orderBy('name')->get();
+
+        return view('users.trashed', compact('users'));
+    }
+
+    // Recuperar un usuario
+    public function restore($id)
+    {
+        User::onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect()->route('users.trashed')->with('success', 'Usuario recuperado');
+    }
 }
